@@ -11,6 +11,7 @@ let search_box = document.querySelector('.search input');
 let search_button = document.querySelector('.search button');
 let wind_speed_local = document.querySelector(".wind_speed_local");
 let humidity_local = document.querySelector(".humidity_local");
+let lang_container = document.querySelector(".lang-change")
 
 let language = 'ru';
 
@@ -18,49 +19,82 @@ async function check_weather(city_input, language) {
     if (search_box.value === "") {
         return
     }
-    const response = await fetch(api_url + city_input + "&lang=" + language + `&appid=${api_key}`);
+    let response = await fetch(api_url + city_input + `&appid=${api_key}`+ "&lang=" + language );
     let data = await response.json();
 
-    city.innerHTML = data.name;
-    temp.innerHTML = Math.floor(data.main.temp) + "°C";
-    humidity.innerHTML = data.main.humidity + "%";
-    wind.innerHTML = data.wind.speed + "km/h";
 
-    console.log(data);
+
+    if (data.cod==="404"){
+        city.innerHTML="PLEASE INPUT CORRECT VALUE"
+
+    }
+    else{
+        city.innerHTML = data.name;
+        temp.innerHTML = Math.floor(data.main.temp) + "°C";
+        humidity.innerHTML = data.main.humidity + "%";
+        wind.innerHTML = data.wind.speed + "km/h";
+        console.log(data);
+    }
 }
 
 
 search_button.addEventListener('click', (e) => {
-    check_weather(search_box.value);
+    check_weather(search_box.value, language);
 })
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        check_weather(search_box.value, language);
 
-if (search_box.value === "") {
-    check_weather("MAdrid");
-} else check_weather("MAdrid");
+    }
+});
 
-document.addEventListener("click", function (e) {
+
+lang_container.addEventListener("click", function (e) {
     if (e.target.classList.contains("ru")) {
-        language = "ru"
+        language = "ru";
         humidity_local.innerHTML = "Влажность";
         wind_speed_local.innerHTML = "Скорость ветра";
     } else if (e.target.classList.contains("en")) {
         language = "en";
         humidity_local.innerHTML = "Humidity";
         wind_speed_local.innerHTML = "Wind speed";
+    }else if (e.target.classList.contains("uk")){
+        language="uk";
+        humidity_local.innerHTML = "Вологість";
+        wind_speed_local.innerHTML = "Швидкість вітру";
     }
 })
 
 
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') {
-        check_weather(search_box.value);
 
-    }
-});
-// function humidity_local() {
-//     if (lang === "ru") {
-//         return "Влажность"
-//     } else {
-//         return "Humidity"
+
+
+// function toggle_language() {
+//     let ru_lang = document.querySelector(".ru");
+//     let en_lang = document.querySelector(".en");
+//     let ua_lang = document.querySelector(".ua");
+//     ru_lang.onclick=()=>{
+//         language="ru";
+//         humidity_local.innerHTML = "Влажность";
+//         wind_speed_local.innerHTML = "Скорость ветра";
+//
+//         console.log(language)
+//
+//     }
+//     en_lang.onclick=()=>{
+//         language="en";
+//         humidity_local.innerHTML = "Humidity";
+//         wind_speed_local.innerHTML = "Wind speed";
+//
+//         console.log(language)
+//
+//     }
+//     ua_lang.onclick=()=>{
+//         language="uk";
+//         humidity_local.innerHTML = "Вологість";
+//         wind_speed_local.innerHTML = "Швидкість вітру";
+//
+//         console.log(language)
+//
 //     }
 // }
