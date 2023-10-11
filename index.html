@@ -14,13 +14,19 @@
                name="" id="">
         <button class="submit"><img src="./images/magnify.png" alt=""></button>
         <div class="lang-change">
-            <img onclick="toggle_language()" class="lang-img ru" src="./images/russia.png" alt="ru">
-            <img onclick="toggle_language()" class="lang-img en" src="./images/uk_flag.png" alt="en">
-            <img onclick="toggle_language()" class="lang-img ua"
+            <img  class="lang-img ru" src="./images/russia.png" alt="ru">
+            <img  class="lang-img en" src="./images/uk_flag.png" alt="en">
+            <img  class="lang-img ua"
                  src="./images/ukraine.png" alt="ua">
         </div>
     </div>
-    <div class="weather">
+    <div class=" container default-container">
+       <h2>Please input city</h2>
+    </div>
+    <div  class=" hidden container error-container">
+        <h2>Please input correct city</h2>
+    </div>
+    <div class="hidden container weather-container">
         <img class="weather-icon" src="images/rain.png" alt="">
         <h1 class="temp"></h1>
         <h2 class="city"></h2>

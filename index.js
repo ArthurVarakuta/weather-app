@@ -6,34 +6,34 @@ let humidity = document.querySelector(".humidity");
 let wind = document.querySelector(".wind");
 let temp = document.querySelector(".temp");
 let city = document.querySelector(".city");
-let city_input = document.querySelector(".city_input");
 let search_box = document.querySelector('.search input');
 let search_button = document.querySelector('.search button');
 let wind_speed_local = document.querySelector(".wind_speed_local");
 let humidity_local = document.querySelector(".humidity_local");
 let lang_container = document.querySelector(".lang-change")
-
+let error_container = document.querySelector(".error-container");
+let default_container = document.querySelector(".default-container");
+let weather_container = document.querySelector(".weather-container");
 let language = 'ru';
 
+
+
 async function check_weather(city_input, language) {
-    if (search_box.value === "") {
-        return
-    }
+
+    default_container.classList.add("hidden");
     let response = await fetch(api_url + city_input + `&appid=${api_key}`+ "&lang=" + language );
     let data = await response.json();
-
-
-
-    if (data.cod==="404"){
-        city.innerHTML="PLEASE INPUT CORRECT VALUE"
-
+    if (data.cod==="404"||data.cod==="400"){
+        weather_container.classList.add("hidden");
+        error_container.classList.remove("hidden")
     }
     else{
+        weather_container.classList.remove("hidden");
+        error_container.classList.add("hidden")
         city.innerHTML = data.name;
         temp.innerHTML = Math.floor(data.main.temp) + "°C";
         humidity.innerHTML = data.main.humidity + "%";
         wind.innerHTML = data.wind.speed + "km/h";
-        console.log(data);
     }
 }
 
@@ -65,36 +65,3 @@ lang_container.addEventListener("click", function (e) {
     }
 })
 
-
-
-
-
-// function toggle_language() {
-//     let ru_lang = document.querySelector(".ru");
-//     let en_lang = document.querySelector(".en");
-//     let ua_lang = document.querySelector(".ua");
-//     ru_lang.onclick=()=>{
-//         language="ru";
-//         humidity_local.innerHTML = "Влажность";
-//         wind_speed_local.innerHTML = "Скорость ветра";
-//
-//         console.log(language)
-//
-//     }
-//     en_lang.onclick=()=>{
-//         language="en";
-//         humidity_local.innerHTML = "Humidity";
-//         wind_speed_local.innerHTML = "Wind speed";
-//
-//         console.log(language)
-//
-//     }
-//     ua_lang.onclick=()=>{
-//         language="uk";
-//         humidity_local.innerHTML = "Вологість";
-//         wind_speed_local.innerHTML = "Швидкість вітру";
-//
-//         console.log(language)
-//
-//     }
-// }
