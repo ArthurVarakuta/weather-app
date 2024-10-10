@@ -1,0 +1,41 @@
+Subject: [PATCH] xd
+---
+Index: index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/index.html b/index.html
+--- a/index.html	(revision 7e4d5bdc92cccc2d7cb92f67be59ed79883f74d3)
++++ b/index.html	(revision b63984c777f0de464793d457fe5e6c54f45a5979)
+@@ -14,16 +14,16 @@
+                name="" id="">
+         <button class="submit"><img src="./images/magnify.png" alt=""></button>
+         <div class="lang-change">
+-            <img  class="lang-img ru" src="./images/russia.png" alt="ru">
+-            <img  class="lang-img en" src="./images/uk_flag.png" alt="en">
+-            <img  class="lang-img ua"
++            <img class="lang-img ru" src="./images/russia.png" alt="ru">
++            <img class="lang-img en" src="./images/uk_flag.png" alt="en">
++            <img class="lang-img ua"
+                  src="./images/ukraine.png" alt="ua">
+         </div>
+     </div>
+     <div class=" container default-container">
+-       <h2>Please input city</h2>
++        <h2>Please input city</h2>
+     </div>
+-    <div  class=" hidden container error-container">
++    <div class=" hidden container error-container">
+         <h2>Please input correct city</h2>
+     </div>
+     <div class="hidden container weather-container">
+@@ -47,6 +47,8 @@
+             </div>
+         </div>
+     </div>
++    <img src="../../../../../Users/arthur/Documents/DALL·E%202024-10-10%2006.20.09%20-%20An%20anime-inspired%20abstract%20background%20featuring%20shades%20of%20pink%20and%20white.%20The%20design%20includes%20soft%20gradients%20blending%20the%20colors%20smoothly,%20with%20flowin.webp"
++         alt="">
+ 
+ </div>
+ <script src="index.js"></script>
